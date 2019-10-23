@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="e6396726-3c72-47d5-89cd-83336f350823" name="NJIT AFS" url="http://afsconnect1.njit.edu">
-        <fileTransfer host="afsconnect1.njit.edu" port="22" rootFolder="/afs/cad/u/n/p/np552/public_html" accessType="SFTP">
+        <fileTransfer host="afsconnect1.njit.edu" port="22" rootFolder="//afs/cad/u/n/p/np552/public_html" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
