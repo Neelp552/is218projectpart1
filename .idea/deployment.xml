@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="NJIT AFS">
+  <component name="PublishConfigData" autoUpload="Always" serverName="NJIT AFS" uploadOnCheckin="e6396726-3c72-47d5-89cd-83336f350823">
     <serverData>
       <paths name="NJIT AFS">
         <serverdata>
@@ -10,6 +10,7 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="NJIT AFS" />
     <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
