@@ -10,13 +10,13 @@ $email = filter_input(INPUT_POST, 'email');
 $password = filter_input(INPUT_POST, 'new-password');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($firstName)) {
-        $firstNameError = "First Name is required";
+        $first = "First Name is required";
     }
     if (empty($lastName)) {
-        $lastNameerror = "Last Name is required";
+        $last = "Last Name is required";
     }
     if (empty($birthDay)) {
-        $birthDayerror = "Birth Date is required";
+        $birthday = "Birth Date is required";
     }
     if (empty($email)) {
         $emailerror = "EMAIL is required";
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($password)) {
         $passwordErrorr = "PASSWORD is required";
     } elseif (strlen($password) <= 8) {
-        $passwordError = "please make sure your PASSWORD is at least 8 characters";
+        $perror = "please make sure your PASSWORD is at least 8 characters";
     }
 }
 ?>
@@ -42,23 +42,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>The User Data</h1>
 <div>
     First Name = <?php echo $first; ?>
-    <span <span class="error"><?php echo $firstNameError; ?></span>
+    <?php echo $first; ?>
 </div>
 <div>
     Last Name = <?php echo $last; ?>
-    <span <span class="error"><?php echo $lastNameerror; ?></span>
+    <?php echo $last; ?>
 </div>
 <div>
     Birthday = <?php echo $birthday; ?>
-    <span <span class="error"><?php echo $birthDayerror; ?></span>
+    <?php echo $birthday; ?>
 </div>
 <div>
     Email = <?php echo $email; ?>
-    <span <span class="error"><?php echo $emailerror; ?></span>
+    <?php echo $emailerror; ?>
 </div>
 <div>
     Password = <?php if (!$passwordErrorr) echo $password; ?>
-    <span <span class="error"><?php echo $passwordError; ?></span>
+    <?php echo $perror; ?>
 </div>
 </body>
 </html>
