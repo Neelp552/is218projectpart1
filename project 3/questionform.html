@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <style>
+        .error {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Question Form</h1>
+
+
+    <form action="question.php" method="post">
+        <div id="data">
+            <label for="Question-name">Question Name:</label>
+            <input id="Question-name" name="Question-name" type="text">
+
+            <label for="Question-body">Question Body:</label>
+            <input id="Question-body" name="Question-body" type="text">
+
+            <label for="Question-skills">Question Skills:</label>
+            <input id="Question-skills" name="Question-skills" type="text">
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</main>
+</body>
+</html>
