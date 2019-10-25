@@ -5,24 +5,24 @@
     <title>Welcome</title>
     <style>
         .error {
-            color: black;
+            color: #FF0000;
         }
     </style>
 </head>
 <body>
 <main>
-    <h1>Question Form</h1>
-
+    <h2>Question Form</h2>
+    <p><span class="error">* required field</span></p>
 
     <form action="questionform.php" method="post">
         <div id="data">
-            <label for="name">Question Name:</label>
+            <label for="name"> Name:</label>
             <input id="name" name="name" type="text">
 
-            <label for="body">Question Body:</label>
+            <label for="body">Body:</label>
             <input id="body" name="body" type="text">
 
-            <label for="skills">Question Skills:</label>
+            <label for="skills"> Skills:</label>
             <input id="skills" name="skills" type="text">
         </div>
         <br>

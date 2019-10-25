@@ -1,24 +1,27 @@
 <?php
+
 //Get values from the input
-$QuestionName = filter_input(INPUT_POST, 'name');
-$QuestionBody = filter_input(INPUT_POST, 'body');
-$QuestionSkills = filter_input(INPUT_POST, 'skills');
-$CheckSkills = explode(',', $QuestionSkills);
+$Name = filter_input(INPUT_POST, 'name');
+$Body = filter_input(INPUT_POST, 'body');
+$Skills = filter_input(INPUT_POST, 'Question-skills');
+
+$CheckSkills = explode(',', $Skills);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($QuestionName)) {
-        $QuestionErr = "Question is required";
-    } elseif (strlen($QuestionName) < 3) {
-        $QuestionErr = "Question must be 3 characters";
+    if (empty($Name)) {
+        $QuestionErr = " name is required";
+    } elseif (strlen($Name) < 3) {
+        $QuestionErr = "Please make sure the question is atleast 3 characters";
     }
-    if (empty($QuestionBody)) {
-        $BodyErr = "body is required";
-    } elseif (strlen($QuestionBody) >= 500) {
-        $BodyErr = " Must be less than 500 characters";
+    if (empty($Body)) {
+        $BodyErr = "Please enter your question her";
+    } elseif (strlen($Body) >= 500) {
+        $BodyErr = "Must be less than 500 characters";
     }
-    if (empty($QuestionSkills)) {
-        $skillsErr = "Please enter a skill";
-    } elseif (count($CheckSkills) <= 2) {
-        $skillsErr = "Please at least 2 skills";
+    if (empty($Skills)) {
+        $skillsErr = "Please enter atleast two skills";
+    } elseif (count($CheckSkills) < 2) {
+        $skillsErr = "Please enter 2 or more skills";
     }
 }
 ?>
@@ -26,20 +29,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <style>
     .error {
-        color: black;
+        color: #FF0000;
     }
 </style>
 <head><title>Question Data</title></head>
 <body>
-<h1>The User Data</h1>
+
 <div>
-    Question Name = <?php if (!$QuestionErr) echo $QuestionName; ?>
+    Name = <?php if (!$QuestionErr) echo $Name; ?>
+    <span <span class="error"><?php echo $QuestionErr; ?></span>
 </div>
 <div>
-    Question Body = <?php if (!$BodyErr) echo $QuestionBody; ?>
+    Body = <?php if (!$BodyErr) echo $Body; ?>
+    <span <span class="error"><?php echo $BodyErr; ?></span>
 </div>
 <div>
-    Question Skills = <?php if (!$skillsErr) echo $QuestionSkills; ?>
+    Skills = <?php if (!$skillsErr) echo $Skills; ?>
+    <span <span class="error"><?php echo $skillsErr; ?></span>
 </div>
 </body>
 </html>
+
+

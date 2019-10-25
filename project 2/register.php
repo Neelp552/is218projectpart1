@@ -1,32 +1,28 @@
-Learn more or give us feedback
 <?php
-//define variable for the empty values
-//$firstNameErr = $lastNameErr = "";
-//Get values from the input
+
 $first = filter_input(INPUT_POST, 'first');
 $last = filter_input(INPUT_POST, 'last');
 $birthday = filter_input(INPUT_POST, 'birthday');
 $email = filter_input(INPUT_POST, 'email');
-$password = filter_input(INPUT_POST, 'new-password');
+$password = filter_input(INPUT_POST, 'password');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($firstName)) {
-        $first = "First Name is required";
+    if (empty($first)) {
+        $Error1 = "please enter your first name";
     }
-    if (empty($lastName)) {
-        $last = "Last Name is required";
+    if (empty($last)) {
+        $Error2 = "please enter your last name";
     }
-    if (empty($birthDay)) {
-        $birthday = "Birth Date is required";
+    if (empty($birthday)) {
+        $Error3 = "please enter your date of birth";
     }
     if (empty($email)) {
-        $emailerror = "EMAIL is required";
-    } elseif ($check === false) {
-        $emailerror = "not a valid EMAIL";
+        $Error4 = "please enter your email";
     }
     if (empty($password)) {
-        $passwordErrorr = "PASSWORD is required";
+        $passwordErr = " please enter correct password";
     } elseif (strlen($password) <= 8) {
-        $perror = "please make sure your PASSWORD is at least 8 characters";
+        $passwordErr = "Must be atleast 8 characters";
     }
 }
 ?>
@@ -37,28 +33,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: black;
     }
 </style>
-<head><title>Registration Data</title></head>
 <body>
-<h1>The User Data</h1>
+
 <div>
     First Name = <?php echo $first; ?>
-    <?php echo $first; ?>
+    <span class="error"><?php echo $Error1; ?></span>
 </div>
 <div>
     Last Name = <?php echo $last; ?>
-    <?php echo $last; ?>
+    <span class="error"><?php echo $Error2; ?></span>
 </div>
 <div>
     Birthday = <?php echo $birthday; ?>
-    <?php echo $birthday; ?>
+    <span class="error"><?php echo $Error3; ?></span>
 </div>
 <div>
     Email = <?php echo $email; ?>
-    <?php echo $emailerror; ?>
+    <span class="error"><?php echo $Error4; ?></span>
 </div>
 <div>
-    Password = <?php if (!$passwordErrorr) echo $password; ?>
-    <?php echo $perror; ?>
+    Password = <?php if (!$passwordErr) echo $password; ?>
+    <span class="error"><?php echo $passwordErr; ?></span>
 </div>
 </body>
 </html>
+

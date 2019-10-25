@@ -12,24 +12,24 @@
 <body>
 <main>
     <h1>Registration Form</h1>
-
+    <p><span class="error">* required field</span></p>
 
     <form action="register.php" method="post">
         <div>
             <label for="first">First name:</label>
-            <input id="first" name="first" type="text"><br>
+            <input id="first" name="first" type="text"><span class="error">* <?php echo $Error1;?></span><br><br>
 
             <label for="last">Last name:</label>
-            <input id="last" name="last" type="text"><br>
+            <input id="last" name="last" type="text"><span class="error">* <?php echo $Error2;?></span><br><br>
 
             <label for="birthday">Birthday:</label>
-            <input id="birthday" name="birthday" type="date"><br>
+            <input id="birthday" name="birthday" type="date"><span class="error">* <?php echo $Error3;?></span><br><br>
 
-            <label for="email">Email:</label>
-            <input id="email" name="email" type="text"><br>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">* <?php echo $Error4;?></span><br><br>
 
-            <label for="password">Password:</label>
-            <input id="password" name="new-password" type="password"><br>
+            <label for="password">Create Password:</label>
+            <input id="password" name="password" type="password"><span class="error">* <?php echo $passwordErr;?></span><br>
         </div>
         <br>
         <input type="submit" value="Submit">
