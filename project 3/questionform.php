@@ -1,27 +1,69 @@
+
 <?php
 
-//Get values from the input
-$Name = filter_input(INPUT_POST, 'name');
-$Body = filter_input(INPUT_POST, 'body');
-$Skills = filter_input(INPUT_POST, 'Question-skills');
+//session_start();
+//$aEmail = $_SESSION['email'];
 
-$CheckSkills = explode(',', $Skills);
+require("../pdo.php");
+
+//session_start();
+
+//$email = $_SESSION['email'];
+//Get values from the input
+$userId = filter_input(INPUT_GET, 'userId');
+$name = filter_input(INPUT_POST, 'name');
+$body = filter_input(INPUT_POST, 'body');
+$skills = filter_input(INPUT_POST, 'skills');
+
+
+$CheckSkills = explode(',', $QuestionSkills);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($Name)) {
+    $formValid = true;
+    if (empty($name)) {
         $QuestionErr = " name is required";
-    } elseif (strlen($Name) < 3) {
-        $QuestionErr = "Please make sure the question is atleast 3 characters";
+        $formValid = false;
+    } elseif (strlen($name) < 3) {
+        $QuestionErr = "Must be atleast 3 characters";
+        $formValid = false;
     }
-    if (empty($Body)) {
-        $BodyErr = "Please enter your question her";
-    } elseif (strlen($Body) >= 500) {
-        $BodyErr = "Must be less than 500 characters";
+    if (empty($body)) {
+        $BodyErr = "please enter a question";
+        $formValid = false;
+    } elseif (strlen($body) >= 500) {
+        $BodyErr = "Question must be less than 500 characters";
+        $formValid = false;
     }
-    if (empty($Skills)) {
-        $skillsErr = "Please enter atleast two skills";
-    } elseif (count($CheckSkills) < 2) {
+    if (empty($skills)) {
+        $skillsErr = "Please enter a skill";
+        $formValid = false;
+    } elseif (count($skills) < 2) {
         $skillsErr = "Please enter 2 or more skills";
+        $formValid = false;
+    }
+    if ($formValid == true) {
+
+        //sql query
+        $query = 'INSERT INTO questions
+                (ownerid, title, body, skills)
+              VALUES
+                (:ownerid, :title, :body, :skills)';
+
+        // Create PDO Statement
+        $statement = $db->prepare($query);
+
+        //binding the values to sql
+        $statement->bindValue(':ownerid', $userId);
+        $statement->bindValue(':title', $name);
+        $statement->bindValue(':body', $body);
+        $statement->bindValue(':skills', $skills);
+
+        // Execute the SQL Query
+        $statement->execute();
+        // Close the database
+        $statement->closeCursor();
+
+        header("Location: ../project/question-list.php?userId=$userId");
     }
 }
 ?>
@@ -34,20 +76,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 <head><title>Question Data</title></head>
 <body>
-
+<h1>The User Data</h1>
 <div>
-    Name = <?php if (!$QuestionErr) echo $Name; ?>
+    Question Name = <?php if (!$QuestionErr) echo $name; ?>
     <span <span class="error"><?php echo $QuestionErr; ?></span>
 </div>
 <div>
-    Body = <?php if (!$BodyErr) echo $Body; ?>
+    Question Body = <?php if (!$BodyErr) echo $body; ?>
     <span <span class="error"><?php echo $BodyErr; ?></span>
 </div>
 <div>
-    Skills = <?php if (!$skillsErr) echo $Skills; ?>
+    Question Skills = <?php if (!$skillsErr) echo $skills; ?>
     <span <span class="error"><?php echo $skillsErr; ?></span>
 </div>
 </body>
 </html>
-
 

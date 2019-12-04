@@ -1,10 +1,30 @@
 <?php
-
+require('../pdo.php');
 $first = filter_input(INPUT_POST, 'first');
 $last = filter_input(INPUT_POST, 'last');
 $birthday = filter_input(INPUT_POST, 'birthday');
 $email = filter_input(INPUT_POST, 'email');
 $password = filter_input(INPUT_POST, 'password');
+
+//sql theory
+$query = 'INSERT INTO accounts
+            (email,fname, lname, birthday, password)
+            VALUES
+            (:email, :fname, :lname, :birthday, :password)';
+
+// Create pdo Statement
+$statement = $db->prepare($query);
+
+// Bind form Values to SQL
+$statement->bindValue(':email', $email);
+$statement->bindValue(':fname', $first);
+$statement->bindValue(':lname', $last);
+$statement->bindValue(':birthday', $birthday);
+$statement->bindValue(':password', $password);
+
+$statement->execute();
+$statement->closeCursor();
+header('Location: ../project/index.html');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($first)) {
@@ -26,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <html>
 <style>
@@ -57,4 +78,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 </body>
 </html>
-

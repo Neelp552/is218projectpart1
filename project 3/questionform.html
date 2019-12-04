@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <style>
-        .error {
-            color: #FF0000;
-        }
-    </style>
+    <link href="question.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <main>
-    <h2>Question Form</h2>
-    <p><span class="error">* required field</span></p>
+    <div class="questionForm">
+        <h1>Question Form</h1>
 
-    <form action="questionform.php" method="post">
-        <div id="data">
-            <label for="name"> Name:</label>
-            <input id="name" name="name" type="text">
+        <form action="questionform.php " method="post">
+            <div id="data">
+                <label for="name"> Name: *</label>
+                <input id="name" name="name" type="text"><span class="error"><?php echo $QuestionErr;?></span><br><br>
 
-            <label for="body">Body:</label>
-            <input id="body" name="body" type="text">
+                <label for="body">Question: *</label>
+                <input id="body" name="body" type="text"><span class="error"><?php echo $BodyErr;?></span><br><br>
 
-            <label for="skills"> Skills:</label>
-            <input id="skills" name="skills" type="text">
-        </div>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+                <label for="skills">Skills: *</label>
+                <input id="skills" name="skills" type="text"><span class="error"><?php echo $skillsErr;?></span><br><br>
+                <p><span class="error">* required field</span></p>
+            </div>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </main>
 </body>
 </html>
+
